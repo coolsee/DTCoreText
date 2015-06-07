@@ -19,6 +19,9 @@
 #import "DTLog.h"
 #import "NSCoder+DTCompatibility.h"
 
+#import "DTActTextAttachment.h"
+#import "DTEmotionTextAttachment.h"
+
 static NSMutableDictionary *_classForTagNameLookup = nil;
 
 @interface DTTextAttachment ()
@@ -51,6 +54,9 @@ static NSMutableDictionary *_classForTagNameLookup = nil;
 	[DTTextAttachment registerClass:[DTVideoTextAttachment class] forTagName:@"video"];
 	[DTTextAttachment registerClass:[DTIframeTextAttachment class] forTagName:@"iframe"];
 	[DTTextAttachment registerClass:[DTObjectTextAttachment class] forTagName:@"object"];
+	
+	[DTTextAttachment registerClass:[DTActTextAttachment class] forTagName:@"act"];
+	[DTTextAttachment registerClass:[DTEmotionTextAttachment class] forTagName:@"e"];
 }
 
 + (DTTextAttachment *)textAttachmentWithElement:(DTHTMLElement *)element options:(NSDictionary *)options

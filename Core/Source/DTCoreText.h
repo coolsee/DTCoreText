@@ -52,6 +52,9 @@
 #import "DTObjectTextAttachment.h"
 #import "DTVideoTextAttachment.h"
 
+#import "DTActTextAttachment.h"
+#import "DTEmotionTextAttachment.h"
+
 // These classes only work with UIKit on iOS
 #if TARGET_OS_IPHONE
 

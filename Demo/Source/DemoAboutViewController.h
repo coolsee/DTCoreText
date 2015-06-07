@@ -8,7 +8,7 @@
 
 #import "DTWeakSupport.h"
 
-@interface DemoAboutViewController : UIViewController
+@interface DemoAboutViewController : UIViewController<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 
 @property (nonatomic, DT_WEAK_PROPERTY) IBOutlet DTAttributedTextView *attributedTextView;
 
