@@ -59,9 +59,17 @@
 	@synchronized(self)
 	{
 		NSDictionary *attributes = [self attributesForAttributedStringRepresentation];
+		NSMutableAttributedString *tmpString = nil;
 		
-		// ignore text, use unicode object placeholder
-		NSMutableAttributedString *tmpString = [[NSMutableAttributedString alloc] initWithString:UNICODE_OBJECT_PLACEHOLDER attributes:attributes];
+		if (___useiOS6Attributes)
+		{
+			tmpString = [_textAttachment attrStringWithElement:self withAttr:attributes];
+		}
+		else
+		{
+			// ignore text, use unicode object placeholder
+			tmpString = [[NSMutableAttributedString alloc] initWithString:UNICODE_OBJECT_PLACEHOLDER attributes:attributes];
+		}
 		
 		// block-level elements get space trimmed and a newline
 		if (self.displayStyle != DTHTMLElementDisplayStyleInline)

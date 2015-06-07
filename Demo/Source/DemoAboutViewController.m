@@ -9,6 +9,7 @@
 #import "DemoAboutViewController.h"
 
 @interface DemoAboutViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *mSysText;
 
 @end
 
@@ -23,6 +24,20 @@
 		 self.navigationItem.title = @"About DTCoreText";
     }
     return self;
+}
+- (IBAction)onGetSysText:(id)sender {
+	
+	NSString *str = self.mSysText.attributedText.htmlFragment;
+	
+	NSLog(@" fragment:%@", str);
+	
+	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
+	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+	self.mSysText.attributedText = string;
+	
+	
+	
 }
 
 - (void)viewDidLoad
@@ -39,9 +54,13 @@
 	self.attributedTextView.shouldDrawLinks = YES;
 	self.attributedTextView.textDelegate = self; // delegate for custom sub views
 
-	self.attributedTextView.attributedString = attributedString;
-	self.attributedTextView.contentInset = UIEdgeInsetsMake(11, 10,33, 10);
+//	self.attributedTextView.attributedString = attributedString;
+
+	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
+	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+	self.mSysText.attributedText = string;
 	
+
 	NSLog(@" fragment:%@", attributedString.htmlFragment);
 }
 

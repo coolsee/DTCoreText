@@ -108,6 +108,8 @@ NSDictionary *_classesForNames = nil;
 	// add text attachment
 	if (_textAttachment)
 	{
+		
+		
 #if TARGET_OS_IPHONE
 		// need run delegate for sizing (only supported on iOS)
 		CTRunDelegateRef embeddedObjectRunDelegate = createEmbeddedObjectRunDelegate(_textAttachment);
@@ -116,6 +118,7 @@ NSDictionary *_classesForNames = nil;
 		
 		// add attachment
 		[tmpDict setObject:_textAttachment forKey:NSAttachmentAttributeName];
+		
 		
 		// remember original paragraphSpacing
 		[tmpDict setObject:DTNSNumberFromCGFloat(self.paragraphStyle.paragraphSpacing) forKey:DTAttachmentParagraphSpacingAttribute];

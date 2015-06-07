@@ -43,6 +43,30 @@
 	return self;
 }
 
+- (NSMutableAttributedString*)attrStringWithElement:(DTHTMLElement *)element withAttr:(NSDictionary*)attr;
+{
+//		NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UIColor greenColor], NSBackgroundColorAttributeName, nil];
+
+	if (___useiOS6Attributes)
+	{
+		NSString *value =[NSString stringWithFormat:@"@%@", _actName];
+		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value attributes:attr];
+		
+//		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value];
+//		NSURL *url = [NSURL URLWithString:_actId];
+		[attributedString addAttribute:NSLinkAttributeName
+								 value:_actId
+								 range:NSMakeRange(0, attributedString.length)];
+		
+		[attributedString addAttribute:NSForegroundColorAttributeName
+								 value:[UIColor blueColor]
+								 range:NSMakeRange(0, attributedString.length)];
+		return attributedString;
+	}else{
+		return [super attrStringWithElement:element withAttr:attr];
+	}
+}
+
 
 - (NSString *)stringByEncodingAsHTML
 {

@@ -22,6 +22,28 @@
 	return self;
 }
 
+
+- (NSMutableAttributedString*)attrStringWithElement:(DTHTMLElement *)element withAttr:(NSDictionary*)attr;
+{
+	//		NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UIColor greenColor], NSBackgroundColorAttributeName, nil];
+	
+	if (___useiOS6Attributes)
+	{
+		
+		NSTextAttachment *attach = [[NSTextAttachment alloc] init];
+		attach.image = self.image;
+		attach.bounds = CGRectMake(0, 0, 20, 20);
+		NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment:attach];
+		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
+		
+		[attrRet addAttributes:attr range:NSMakeRange(0, attrRet.length)];
+		
+		return attrRet;
+	}else{
+		return [super attrStringWithElement:element withAttr:attr];
+	}
+}
+
 - (NSString *)stringByEncodingAsHTML
 {
 	NSMutableString *retString = [NSMutableString string];

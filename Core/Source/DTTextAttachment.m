@@ -126,6 +126,12 @@ static NSMutableDictionary *_classForTagNameLookup = nil;
 	return self;
 }
 
+- (NSMutableAttributedString*)attrStringWithElement:(DTHTMLElement *)element withAttr:(NSDictionary*)attr;
+{
+	NSMutableAttributedString *tmpString = [[NSMutableAttributedString alloc] initWithString:UNICODE_OBJECT_PLACEHOLDER attributes:attr];
+	return tmpString;
+}
+
 - (void)adjustVerticalAlignmentForFont:(CTFontRef)font
 {
 	_fontLeading = CTFontGetLeading(font);

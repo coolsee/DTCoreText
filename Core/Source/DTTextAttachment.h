@@ -102,6 +102,9 @@ typedef NS_ENUM(NSUInteger, DTTextAttachmentVerticalAlignment)
  @returns Returns an initialized DTTextAttachment built using the element and options parameters.  */
 - (id)initWithElement:(DTHTMLElement *)element options:(NSDictionary *)options;
 
+
+- (NSMutableAttributedString*)attrStringWithElement:(DTHTMLElement *)element withAttr:(NSDictionary*)attr;
+
 /**
  @name Vertical Alignment
  */
