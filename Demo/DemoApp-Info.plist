@@ -8,8 +8,6 @@
 	<string>Rich Text</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>com.drobnik.DTCoreText.demo</string>
 	<key>CFBundleInfoDictionaryVersion</key>

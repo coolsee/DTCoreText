@@ -23,6 +23,12 @@
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		22740FF11B25BC5F0070EAEA /* QuarzViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22740FF01B25BC5F0070EAEA /* QuarzViewController.m */; };
+		2274100F1B25C32D0070EAEA /* peticon0003.png in Resources */ = {isa = PBXBuildFile; fileRef = 2274100B1B25C32D0070EAEA /* peticon0003.png */; };
+		227410101B25C32D0070EAEA /* peticon0004.png in Resources */ = {isa = PBXBuildFile; fileRef = 2274100C1B25C32D0070EAEA /* peticon0004.png */; };
+		227410111B25C32D0070EAEA /* peticon0005.png in Resources */ = {isa = PBXBuildFile; fileRef = 2274100D1B25C32D0070EAEA /* peticon0005.png */; };
+		227410121B25C32D0070EAEA /* peticon0006.png in Resources */ = {isa = PBXBuildFile; fileRef = 2274100E1B25C32D0070EAEA /* peticon0006.png */; };
+		227410151B25CD010070EAEA /* CoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 227410141B25CD010070EAEA /* CoreTextView.m */; };
 		22D180941B24A9BE0067A2FD /* DTActTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 22D180921B24A9BE0067A2FD /* DTActTextAttachment.h */; };
 		22D180951B24A9BE0067A2FD /* DTActTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 22D180921B24A9BE0067A2FD /* DTActTextAttachment.h */; };
 		22D180961B24A9BE0067A2FD /* DTActTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 22D180921B24A9BE0067A2FD /* DTActTextAttachment.h */; };
@@ -969,6 +975,14 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* RTDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		22740FEF1B25BC5F0070EAEA /* QuarzViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuarzViewController.h; sourceTree = "<group>"; };
+		22740FF01B25BC5F0070EAEA /* QuarzViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuarzViewController.m; sourceTree = "<group>"; };
+		2274100B1B25C32D0070EAEA /* peticon0003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peticon0003.png; sourceTree = "<group>"; };
+		2274100C1B25C32D0070EAEA /* peticon0004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peticon0004.png; sourceTree = "<group>"; };
+		2274100D1B25C32D0070EAEA /* peticon0005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peticon0005.png; sourceTree = "<group>"; };
+		2274100E1B25C32D0070EAEA /* peticon0006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peticon0006.png; sourceTree = "<group>"; };
+		227410131B25CD010070EAEA /* CoreTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextView.h; sourceTree = "<group>"; };
+		227410141B25CD010070EAEA /* CoreTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextView.m; sourceTree = "<group>"; };
 		22D180921B24A9BE0067A2FD /* DTActTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTActTextAttachment.h; sourceTree = "<group>"; };
 		22D180931B24A9BE0067A2FD /* DTActTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTActTextAttachment.m; sourceTree = "<group>"; };
 		22D1809E1B24AE3E0067A2FD /* DTEmotionTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTEmotionTextAttachment.h; sourceTree = "<group>"; };
@@ -1577,6 +1591,10 @@
 		A788CA1A14863EF100E1AFD9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2274100B1B25C32D0070EAEA /* peticon0003.png */,
+				2274100C1B25C32D0070EAEA /* peticon0004.png */,
+				2274100D1B25C32D0070EAEA /* peticon0005.png */,
+				2274100E1B25C32D0070EAEA /* peticon0006.png */,
 				A7D63CD91611B9AC00D4712A /* Default-568h@2x.png */,
 				A788CA2A14863EF100E1AFD9 /* Snippets.plist */,
 				A788CA1B14863EF100E1AFD9 /* Alignment.html */,
@@ -1618,6 +1636,10 @@
 		A788CA3114863EF100E1AFD9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				227410131B25CD010070EAEA /* CoreTextView.h */,
+				227410141B25CD010070EAEA /* CoreTextView.m */,
+				22740FEF1B25BC5F0070EAEA /* QuarzViewController.h */,
+				22740FF01B25BC5F0070EAEA /* QuarzViewController.m */,
 				A788CA3314863EF100E1AFD9 /* CoreTextDemoAppDelegate.h */,
 				A788CA3414863EF100E1AFD9 /* CoreTextDemoAppDelegate.m */,
 				A788CA3514863EF100E1AFD9 /* DemoSnippetsViewController.h */,
@@ -2523,6 +2545,8 @@
 				A76C23D618353EFE00F54F02 /* Oliver.jpg in Resources */,
 				A788CA4214863EF100E1AFD9 /* Icon@2x.png in Resources */,
 				A788CA4314863EF100E1AFD9 /* icon_smile.gif in Resources */,
+				2274100F1B25C32D0070EAEA /* peticon0003.png in Resources */,
+				227410121B25C32D0070EAEA /* peticon0006.png in Resources */,
 				A788CA4414863EF100E1AFD9 /* Image.html in Resources */,
 				A788CA4514863EF100E1AFD9 /* ListTest.html in Resources */,
 				A788CA4614863EF100E1AFD9 /* LoremIpsum.html in Resources */,
@@ -2537,6 +2561,7 @@
 				A788CA4F14863EF100E1AFD9 /* XB NiloofarBd.ttf in Resources */,
 				A7D54EA514E003190063E78B /* Objects.html in Resources */,
 				A7A95D9514F3F45E002E3F7E /* LineHeight.html in Resources */,
+				227410101B25C32D0070EAEA /* peticon0004.png in Resources */,
 				A78C241115073BC50045651E /* TextBoxes.html in Resources */,
 				A72C15C71592FAF70064A67F /* CoreTextIssues.html in Resources */,
 				A73885A51606E9B2001D60C4 /* EmojiTest.html in Resources */,
@@ -2546,6 +2571,7 @@
 				A730BCD716D29588003B849F /* Languages.html in Resources */,
 				A7CF230A16DE1DF7005A4A6E /* AppledocSettings.plist in Resources */,
 				A740368916E51B3A00ECCDE0 /* DemoAboutViewController.xib in Resources */,
+				227410111B25C32D0070EAEA /* peticon0005.png in Resources */,
 				A740369116E51C9800ECCDE0 /* About.html in Resources */,
 				DDCCEB1E17005A4F009FF923 /* css.css in Resources */,
 				A76C23D718353F0A00F54F02 /* Oliver@2x.jpg in Resources */,
@@ -2668,10 +2694,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227410151B25CD010070EAEA /* CoreTextView.m in Sources */,
 				A788CA5014863EF100E1AFD9 /* CoreTextDemoAppDelegate.m in Sources */,
 				A788CA5114863EF100E1AFD9 /* DemoSnippetsViewController.m in Sources */,
 				A788CA5214863EF100E1AFD9 /* DemoTextViewController.m in Sources */,
 				A788CA5314863EF100E1AFD9 /* main.m in Sources */,
+				22740FF11B25BC5F0070EAEA /* QuarzViewController.m in Sources */,
 				A740368816E51B3A00ECCDE0 /* DemoAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3054,6 +3082,8 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3072,6 +3102,8 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				COPY_PHASE_STRIP = YES;
 				GCC_PREFIX_HEADER = "Demo/DemoApp-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -3411,6 +3443,8 @@
 		A7DC5CFC17F833F1006ADDF5 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;

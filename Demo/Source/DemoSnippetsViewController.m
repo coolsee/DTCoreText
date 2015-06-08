@@ -9,6 +9,7 @@
 #import "DemoSnippetsViewController.h"
 #import "DemoTextViewController.h"
 #import "DemoAboutViewController.h"
+#import "QuarzViewController.h"
 
 // identifier for cell reuse
 NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseIdentifier";
@@ -172,6 +173,12 @@ NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseId
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+	if (indexPath.row == 0)
+	{
+		QuarzViewController *viewController = [[QuarzViewController alloc] init];
+		[self.navigationController pushViewController:viewController animated:YES];
+		return;
+	}
 	NSDictionary *rowSnippet = [_snippets objectAtIndex:indexPath.row];
 	
 	DemoTextViewController *viewController = [[DemoTextViewController alloc] init];
