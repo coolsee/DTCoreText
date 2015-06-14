@@ -39,6 +39,18 @@
 - (NSString *)HTMLFragment;
 
 /**
+ Generates a HTML representation of the attributed string
+ @returns The generated string
+ */
+- (NSString *)HTMLSimpleString;
+
+
+/**
+ Generates a HTML fragment representation of the attributed string including inlined styles and no html or head elements
+ @returns The generated string
+ */
+- (NSString *)HTMLSimpleFragment;
+/**
  @name Properties
  */
 

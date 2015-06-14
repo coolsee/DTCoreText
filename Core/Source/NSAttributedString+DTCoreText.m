@@ -330,6 +330,23 @@
 	// return it's output
 	return [writer HTMLFragment];
 }
+- (NSString *)htmlSimpleString
+{
+	// create a writer
+	DTHTMLWriter *writer = [[DTHTMLWriter alloc] initWithAttributedString:self];
+	
+	// return it's output
+	return [writer HTMLSimpleString];
+}
+
+- (NSString *)htmlSimpleFragment
+{
+	// create a writer
+	DTHTMLWriter *writer = [[DTHTMLWriter alloc] initWithAttributedString:self];
+	
+	// return it's output
+	return [writer HTMLSimpleFragment];
+}
 
 - (NSString *)plainTextString
 {

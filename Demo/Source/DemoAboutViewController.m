@@ -27,7 +27,7 @@
 }
 - (IBAction)onGetSysText:(id)sender {
 	
-	NSString *str = self.mSysText.attributedText.htmlFragment;
+	NSString *str = self.mSysText.attributedText.htmlSimpleFragment;
 	
 	NSLog(@" fragment:%@", str);
 	
@@ -61,7 +61,7 @@
 	self.mSysText.attributedText = string;
 	
 
-	NSLog(@" fragment:%@", attributedString.htmlFragment);
+	NSLog(@" fragment:%@", attributedString.htmlSimpleFragment);
 }
 
 - (void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView didDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context

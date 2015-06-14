@@ -49,19 +49,46 @@
 
 	if (___useiOS6Attributes)
 	{
-		NSString *value =[NSString stringWithFormat:@"@%@", _actName];
-		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value attributes:attr];
-		
-//		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value];
+//		NSString *value =[NSString stringWithFormat:@"%@", _actName];
+//		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value attributes:attr];
+//		
+////		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value];
 //		NSURL *url = [NSURL URLWithString:_actId];
-		[attributedString addAttribute:NSLinkAttributeName
-								 value:_actId
-								 range:NSMakeRange(0, attributedString.length)];
+//		
+//		[attributedString addAttribute:NSLinkAttributeName
+//								 value:url
+//								 range:NSMakeRange(0, attributedString.length)];
+//		
+//		[attributedString addAttribute:NSForegroundColorAttributeName
+//								 value:[UIColor blueColor]
+//								 range:NSMakeRange(0, attributedString.length)];
+//		return attributedString;
 		
-		[attributedString addAttribute:NSForegroundColorAttributeName
-								 value:[UIColor blueColor]
-								 range:NSMakeRange(0, attributedString.length)];
-		return attributedString;
+		NSString *text =[NSString stringWithFormat:@"@%@", _actName];
+		NSTextAttachment *attach = [[NSTextAttachment alloc] init];
+		
+		CGRect frame = CGRectMake(0, 0, 40, 10);
+		UIImage *image = [[UIImage alloc] init];
+		UIFont *font = [UIFont boldSystemFontOfSize:8];
+		UIGraphicsBeginImageContext(frame.size);
+		[image drawInRect:frame];
+		CGRect rect = frame;
+		[[UIColor blueColor] set];
+		[text drawInRect:CGRectIntegral(rect) withFont:font];
+		UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		
+		
+		attach.image = newImage;
+		attach.bounds = frame;
+		NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment:attach];
+		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
+		
+		[attrRet addAttributes:attr range:NSMakeRange(0, attrRet.length)];
+		
+		return attrRet;
+		
 	}else{
 		return [super attrStringWithElement:element withAttr:attr];
 	}

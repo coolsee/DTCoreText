@@ -109,6 +109,17 @@
  */
 - (NSString *)htmlFragment;
 
+
+- (NSString *)htmlSimpleString;
+
+
+/**
+ Encodes the receiver into a generic HTML fragment representation. Styles are inlined and no html or head tags are included.
+ 
+ @returns An HTML string.
+ */
+- (NSString *)htmlSimpleFragment;
+
 /**
  Converts the receiver into plain text.
  
