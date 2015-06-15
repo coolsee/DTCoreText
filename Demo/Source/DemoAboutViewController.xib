@@ -8,7 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DemoAboutViewController">
             <connections>
-                <outlet property="attributedTextView" destination="4" id="9"/>
                 <outlet property="mSysText" destination="10" id="hzq-E5-jhj"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -18,19 +17,36 @@
             <rect key="frame" x="0.0" y="20" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="dttext" customClass="DTAttributedTextView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10" userLabel="systemtext">
-                    <rect key="frame" x="0.0" y="244" width="320" height="244"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10" userLabel="systemtext" customClass="DTTextView">
+                    <rect key="frame" x="0.0" y="117" width="320" height="371"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK0-TI-lH3">
+                    <rect key="frame" x="8" y="62" width="40" height="30"/>
+                    <state key="normal" title="addat">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addAT:" destination="-1" eventType="touchUpInside" id="8Em-cA-jYI"/>
+                        <action selector="onGetSysText:" destination="-1" eventType="touchUpInside" id="CgW-tJ-FjT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4a-ej-pBT">
+                    <rect key="frame" x="79" y="62" width="64" height="30"/>
+                    <state key="normal" title="replaceat">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addAT:" destination="-1" eventType="touchUpInside" id="Nvc-K8-aKM"/>
+                        <action selector="onGetSysText:" destination="-1" eventType="touchUpInside" id="wev-R8-NId"/>
+                        <action selector="onReplaceAt:" destination="-1" eventType="touchUpInside" id="fHg-Mb-pZp"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUh-bt-zL3">
-                    <rect key="frame" x="47" y="530" width="85" height="30"/>
+                    <rect key="frame" x="165" y="62" width="41" height="30"/>
                     <state key="normal" title="sysstr">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -38,28 +54,13 @@
                         <action selector="onGetSysText:" destination="-1" eventType="touchUpInside" id="Yft-BI-Za2"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="peticon0004" translatesAutoresizingMaskIntoConstraints="NO" id="q1r-rL-dQW">
-                    <rect key="frame" x="140" y="496" width="44" height="44"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" id="MRj-Dv-hhX"/>
-                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="On6-KA-Rqu"/>
-                <constraint firstItem="4" firstAttribute="height" secondItem="10" secondAttribute="height" id="Oq4-TX-F5G"/>
-                <constraint firstItem="10" firstAttribute="top" secondItem="4" secondAttribute="bottom" id="Syg-7h-u0k"/>
-                <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="80" id="b85-W1-Hc3"/>
-                <constraint firstItem="10" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ccF-QW-KK4"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" id="fCu-ci-YNa"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="vF6-T2-5gm"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="293" y="256"/>
         </view>
     </objects>
-    <resources>
-        <image name="peticon0004" width="40" height="40"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

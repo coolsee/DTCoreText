@@ -7,6 +7,7 @@
 //
 
 #import "DTWeakSupport.h"
+#import "DTTextView.h"
 
 @interface DemoAboutViewController : UIViewController<DTAttributedTextContentViewDelegate, DTLazyImageViewDelegate>
 

@@ -9,7 +9,7 @@
 #import "DemoAboutViewController.h"
 
 @interface DemoAboutViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *mSysText;
+@property (weak, nonatomic) IBOutlet DTTextView *mSysText;
 
 @end
 
@@ -27,17 +27,24 @@
 }
 - (IBAction)onGetSysText:(id)sender {
 	
-	NSString *str = self.mSysText.attributedText.htmlSimpleFragment;
+	NSString *str = self.mSysText.htmlStr;
 	
 	NSLog(@" fragment:%@", str);
 	
 	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
+	[options setObject:[NSNumber numberWithInt:15]  forKey:DTDefaultFontSize];
+	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
 	self.mSysText.attributedText = string;
 	
-	
-	
+}
+- (IBAction)addAT:(id)sender {
+	[self.mSysText addAction:@"at" withName:@"水电费" withId:@"id"];
+}
+- (IBAction)onReplaceAt:(id)sender {
+    
+    [self.mSysText replaceWithAction:@"at" withName:@"水电费" withId:@"id"];
 }
 
 - (void)viewDidLoad
@@ -57,6 +64,7 @@
 //	self.attributedTextView.attributedString = attributedString;
 
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
+	[options setObject:[NSNumber numberWithInt:15]  forKey:DTDefaultFontSize];
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
 	self.mSysText.attributedText = string;
 	
