@@ -8,7 +8,7 @@
 
 #import "DTActTextAttachment.h"
 #import "DTCoreText.h"
-
+#import "DTCSSStylesheet.h"
 
 
 @implementation DTActTextAttachment
@@ -67,21 +67,22 @@
 		NSString *text =[NSString stringWithFormat:@"@%@", _actName];
 		NSTextAttachment *attach = [[NSTextAttachment alloc] init];
 		
-		CGRect frame = CGRectMake(0, 0, 40, 10);
+		UIFont *font = [attr objectForKey:NSFontAttributeName];
+		CGRect rect = [text boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
+	
+		
 		UIImage *image = [[UIImage alloc] init];
-		UIFont *font = [UIFont boldSystemFontOfSize:8];
-		UIGraphicsBeginImageContext(frame.size);
-		[image drawInRect:frame];
-		CGRect rect = frame;
+		UIGraphicsBeginImageContext(rect.size);
+		[image drawInRect:rect];
 		[[UIColor blueColor] set];
 		[text drawInRect:CGRectIntegral(rect) withFont:font];
 		UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 		
-		
-		
 		attach.image = newImage;
-		attach.bounds = frame;
+		CGFloat fontd = [font descender];
+		rect.origin.y = rect.origin.y+fontd;
+		attach.bounds = rect;
 		NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment:attach];
 		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
 		
