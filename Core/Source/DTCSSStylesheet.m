@@ -93,7 +93,10 @@ extern unsigned int default_css_len;
 #endif
 
 #pragma mark Working with Style Blocks
-
+- (void)uncompressShorthands:(NSMutableDictionary *)styles
+{
+	[self _uncompressShorthands:styles];
+}
 - (void)_uncompressShorthands:(NSMutableDictionary *)styles
 {
 	// list-style shorthand

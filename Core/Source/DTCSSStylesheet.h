@@ -58,7 +58,7 @@
  */
 - (void)mergeStylesheet:(DTCSSStylesheet *)stylesheet;
 
-
+- (void)uncompressShorthands:(NSMutableDictionary *)styles;
 /**
  @name Accessing Style Information
  */

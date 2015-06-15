@@ -203,7 +203,7 @@
 	}
 	else
 	{
-		_defaultFontDescriptor.fontFamily = @"Times New Roman";
+//		_defaultFontDescriptor.fontFamily = @"Times New Roman";
 	}
 
 	NSString *defaultFontName = [_options objectForKey:DTDefaultFontName];
@@ -718,39 +718,54 @@
 			}
 		}
 		
-		// apply style from merged style sheet
-		NSSet *matchedSelectors;
-		NSDictionary *mergedStyles = [_globalStyleSheet mergedStyleDictionaryForElement:newNode matchedSelectors:&matchedSelectors ignoreInlineStyle:_ignoreInlineStyles];
 		
-		if (mergedStyles)
+		// 取消继承
+		// Get tag's local style attribute
+		NSString *styleString = [newNode.attributes objectForKey:@"style"];
+		NSMutableDictionary *mergedStyles = [NSMutableDictionary dictionary];
+		if ([styleString length])
 		{
-			[newNode applyStyleDictionary:mergedStyles];
+			NSMutableDictionary *localStyles = [[styleString dictionaryOfCSSStyles] mutableCopy];
 			
-			// do not add the matched class names to 'class' custom attribute 
-			if (matchedSelectors)
-			{
-				NSMutableSet *classNamesToIgnoreForCustomAttributes = [NSMutableSet set];
-				
-				for (NSString *oneSelector in matchedSelectors)
-				{
-					// class selectors have a period
-					NSRange periodRange = [oneSelector rangeOfString:@"."];
-					
-					if (periodRange.location != NSNotFound)
-					{
-						NSString *className = [oneSelector substringFromIndex:periodRange.location+1];
-						
-						// add this to ignored classes
-						[classNamesToIgnoreForCustomAttributes addObject:className];
-					}
-				}
-				
-				if ([classNamesToIgnoreForCustomAttributes count])
-				{
-					newNode.CSSClassNamesToIgnoreForCustomAttributes = classNamesToIgnoreForCustomAttributes;
-				}
-			}
+			// need to uncompress because otherwise we might get shorthands and non-shorthands together
+			[_globalStyleSheet uncompressShorthands:localStyles];
+			
+			[mergedStyles addEntriesFromDictionary:localStyles];
 		}
+		
+//		// apply style from merged style sheet
+//		NSSet *matchedSelectors;
+//		NSDictionary *mergedStyles = [_globalStyleSheet mergedStyleDictionaryForElement:newNode matchedSelectors:&matchedSelectors ignoreInlineStyle:_ignoreInlineStyles];
+//		
+//		if (mergedStyles)
+//		{
+//			[newNode applyStyleDictionary:mergedStyles];
+//			
+//			// do not add the matched class names to 'class' custom attribute 
+//			if (matchedSelectors)
+//			{
+//				NSMutableSet *classNamesToIgnoreForCustomAttributes = [NSMutableSet set];
+//				
+//				for (NSString *oneSelector in matchedSelectors)
+//				{
+//					// class selectors have a period
+//					NSRange periodRange = [oneSelector rangeOfString:@"."];
+//					
+//					if (periodRange.location != NSNotFound)
+//					{
+//						NSString *className = [oneSelector substringFromIndex:periodRange.location+1];
+//						
+//						// add this to ignored classes
+//						[classNamesToIgnoreForCustomAttributes addObject:className];
+//					}
+//				}
+//				
+//				if ([classNamesToIgnoreForCustomAttributes count])
+//				{
+//					newNode.CSSClassNamesToIgnoreForCustomAttributes = classNamesToIgnoreForCustomAttributes;
+//				}
+//			}
+//		}
 		
 		// adding a block element eliminates previous trailing white space text node
 		// because a new block starts on a new line
