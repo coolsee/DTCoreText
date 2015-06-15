@@ -35,37 +35,37 @@
 {
 	@synchronized(self)
 	{
-		NSString *text;
+		NSString *text = _text;
 		
-		if (_preserveNewlines)
-		{
-			text = _text;
-			
-			// PRE ignores the first \n
-			if ([text hasPrefix:@"\n"])
-			{
-				text = [text substringFromIndex:1];
-			}
-			
-			// PRE ignores the last \n
-			if ([text hasSuffix:@"\n"])
-			{
-				text = [text substringWithRange:NSMakeRange(0, [text length]-1)];
-			}
-			
-			// replace paragraph breaks with line breaks
-			// useing \r as to not confuse this with line feeds, but still get a single paragraph
-			text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"\r"];
-		}
-		else if (_containsAppleConvertedSpace)
-		{
-			// replace nbsp; with regular space
-			text = [_text stringByReplacingOccurrencesOfString:UNICODE_NON_BREAKING_SPACE withString:@" "];
-		}
-		else
-		{
-			text = [_text stringByNormalizingWhitespace];
-		}
+//		if (_preserveNewlines)
+//		{
+//			text = _text;
+//			
+//			// PRE ignores the first \n
+//			if ([text hasPrefix:@"\n"])
+//			{
+//				text = [text substringFromIndex:1];
+//			}
+//			
+//			// PRE ignores the last \n
+//			if ([text hasSuffix:@"\n"])
+//			{
+//				text = [text substringWithRange:NSMakeRange(0, [text length]-1)];
+//			}
+//			
+//			// replace paragraph breaks with line breaks
+//			// useing \r as to not confuse this with line feeds, but still get a single paragraph
+//			text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"\r"];
+//		}
+//		else if (_containsAppleConvertedSpace)
+//		{
+//			// replace nbsp; with regular space
+//			text = [_text stringByReplacingOccurrencesOfString:UNICODE_NON_BREAKING_SPACE withString:@" "];
+//		}
+//		else
+//		{
+//			text = [_text stringByNormalizingWhitespace];
+//		}
 		
 		NSDictionary *attributes = [self attributesForAttributedStringRepresentation];
 		
