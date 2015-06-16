@@ -90,8 +90,9 @@
 		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
 		
 		if(!_isEditable){
+			
 			[attrRet addAttribute:NSLinkAttributeName
-							value:[NSURL URLWithString:_actId]
+							value:[NSURL URLWithString:[NSString stringWithFormat:@"%@://%@",self.actTypeStr, _actId]]
 							range:NSMakeRange(0, attrRet.length)];
 		}
 		[attrRet addAttributes:attr range:NSMakeRange(0, attrRet.length)];
@@ -102,14 +103,17 @@
 	}
 }
 
-
-- (NSString *)stringByEncodingAsHTML
+- (NSString *)actTypeStr
 {
 	NSString *type = @"at";
 	if (_actType == DTActTypeTopic) {
 		type = @"topic";
 	}
-	return [NSString stringWithFormat:@"<act type='%@' name='%@' id='%@'>%@</act>", type, _actName, _actId, _actName];
+	return type;
+}
+- (NSString *)stringByEncodingAsHTML
+{
+	return [NSString stringWithFormat:@"<act type='%@' name='%@' id='%@'>%@</act>", self.actTypeStr, _actName, _actId, _actName];
 }
 
 
