@@ -33,6 +33,7 @@
  */
 - (NSString *)dataURLRepresentation;
 
++ (NSCache *)sharedImageCache;
 /**
  The image represented by the receiver
  */

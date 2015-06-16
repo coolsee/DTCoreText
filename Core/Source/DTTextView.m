@@ -32,8 +32,11 @@
 //}
 
 // <act type="at" name="好人" id="sdfss">aa</act>
-- (void)addAction:(NSString *)type withName:(NSString*)name withId:(NSString*)id{
-	NSString *action = [NSString stringWithFormat:@"<act type=\"%@\" name=\"%@\" id=\"%@\">%@</act>", type, name, id, name];
+- (void)addAt:(NSString*)name withId:(NSString*)id
+{
+	
+	UIFont *font = self.font;
+	NSString *action = [NSString stringWithFormat:@"<act type=\"at\" name=\"%@\" id=\"%@\">%@</act>", name, id, name];
 	
 	NSString *str =  [NSString stringWithFormat:@"%@%@",self.attributedText.htmlSimpleFragment, action];
 	
@@ -41,10 +44,35 @@
 	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
 	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
-	
+	[options setObject:[NSNumber numberWithBool:self.editable] forKey:DTTextViewEditable];
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
 	self.attributedText = string;
+//	textView.textStorage.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(kTextViewFontSize), range: wholeRange)
+	self.font = font;
 }
+
+
+- (void)replaceWithAt:(NSString*)name withId:(NSString*)id{
+//	UIFont *font = self.font;
+	NSString *action = [NSString stringWithFormat:@"<act type=\"at\" name=\"%@\" id=\"%@\">%@</act>", name, id, name];
+	
+	
+	NSData *data = [action dataUsingEncoding:NSUTF8StringEncoding];
+	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
+	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
+	[options setObject:[NSNumber numberWithBool:self.editable] forKey:DTTextViewEditable];
+	
+	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+	
+	[self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:string];
+	self.selectedRange = NSMakeRange(self.selectedRange.location + 1, 1);
+//	 textView.textStorage.removeAttribute(NSFontAttributeName, range: wholeRange)
+//	[self.textStorage removeAttribute:NSForegroundColorAttributeName range:NSMakeRange(0, self.textStorage.length)];
+//	[self.textStorage addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.textStorage.length)];
+//	self.textStorage.addAttribute(NSFontAttributeName, value: font, range: self.s)
+//	self.font = font;
+}
+
 
 - (void)addEmotion:(NSString *)type
 {
@@ -56,18 +84,21 @@
 	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
 	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
+	[options setObject:[NSNumber numberWithBool:self.editable] forKey:DTTextViewEditable];
 	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
 	self.attributedText = string;
 }
 
-- (void)replaceWithAction:(NSString *)type withName:(NSString*)name withId:(NSString*)id{
-	NSString *action = [NSString stringWithFormat:@"<act type=\"%@\" name=\"%@\" id=\"%@\">%@</act>", type, name, id, name];
-	
+
+- (void)replaceWithEmotion:(NSString *)type
+{
+	NSString *action = [NSString stringWithFormat:@"<e src=\"%@\">%@</e>", type, type];
 	
 	NSData *data = [action dataUsingEncoding:NSUTF8StringEncoding];
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
 	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
+	[options setObject:[NSNumber numberWithBool:self.editable] forKey:DTTextViewEditable];
 	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
 	
@@ -88,22 +119,5 @@
 	self.attributedText = string;
 }
 
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
-{
-	
-	NSLog(@"URL %@", URL);
-	return false;
-}
-- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
-{
-	NSLog(@"textAttachment %@", textAttachment);
-	return false;
-}
-
-- (void)textViewDidChange:(UITextView *)textView
-{
-	NSLog(@"textAttachment %@", textView);
-}
 
 @end

@@ -37,6 +37,7 @@ extern NSString * const NSAttachmentAttributeName;
 
 // custom options
 
+extern NSString * const DTTextViewEditable;
 extern NSString * const DTMaxImageSize;
 extern NSString * const DTDefaultFontFamily;
 extern NSString * const DTDefaultFontName;

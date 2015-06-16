@@ -26,7 +26,10 @@
 
 - (id)initWithElement:(DTHTMLElement *)element options:(NSDictionary *)options
 {
+	
 	self = [super initWithElement:element options:options];
+	_isEditable = [options objectForKey:DTTextViewEditable];
+	
 	NSString *type = [element.attributes objectForKey:@"type"];
 	if([@"at" isEqual:type]){
 		_actType = DTActTypeAt;
@@ -45,7 +48,6 @@
 
 - (NSMutableAttributedString*)attrStringWithElement:(DTHTMLElement *)element withAttr:(NSDictionary*)attr;
 {
-//		NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UIColor greenColor], NSBackgroundColorAttributeName, nil];
 
 	if (___useiOS6Attributes)
 	{
@@ -74,10 +76,8 @@
 		UIImage *image = [[UIImage alloc] init];
 		UIGraphicsBeginImageContext(rect.size);
 		[image drawInRect:rect];
-//		[[UIColor blueColor] set];
-		NSDictionary *attribute = @{NSForegroundColorAttributeName: [UIColor blueColor]};
+		NSDictionary *attribute = @{NSForegroundColorAttributeName: [UIColor blueColor], NSFontAttributeName:font};
 		[text drawInRect:rect withAttributes:attribute];
-//		[text drawInRect:CGRectIntegral(rect) withFont:font];
 		UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 		
@@ -88,11 +88,13 @@
 		NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment:attach];
 		
 		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
-		[attrRet addAttribute:NSLinkAttributeName
-								 value:[NSURL URLWithString:_actId]
-								 range:NSMakeRange(0, attrRet.length)];
-		[attrRet addAttributes:attr range:NSMakeRange(0, attrRet.length)];
 		
+		if(!_isEditable){
+			[attrRet addAttribute:NSLinkAttributeName
+							value:[NSURL URLWithString:_actId]
+							range:NSMakeRange(0, attrRet.length)];
+		}
+		[attrRet addAttributes:attr range:NSMakeRange(0, attrRet.length)];
 		return attrRet;
 		
 	}else{

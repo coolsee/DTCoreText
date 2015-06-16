@@ -10,7 +10,7 @@ NSString * const NSAttachmentAttributeName = @"NSAttachmentAttributeName";
 #endif
 
 // custom options
-
+NSString * const DTTextViewEditable = @"DTTextViewEditable";
 NSString * const DTMaxImageSize = @"DTMaxImageSize";
 NSString * const DTDefaultFontFamily = @"DTDefaultFontFamily";
 NSString * const DTDefaultFontName = @"DTDefaultFontName";

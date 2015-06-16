@@ -33,5 +33,6 @@ typedef NS_ENUM(NSInteger, DTActType)
 @property (nonatomic, assign) DTActType actType;
 @property (nonatomic, strong) NSString* actName;
 @property (nonatomic, strong) NSString* actId;
+@property (nonatomic, strong) NSNumber *isEditable;
 
 @end

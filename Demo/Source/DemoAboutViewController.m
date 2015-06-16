@@ -73,7 +73,7 @@
 	[self.mSysText setHtmlStr:htmlstr];
 	
 	[self.mSysText addEmotion:@"Oliver.jpg"];
-//	[self.mSysText addAction:@"at" withName:@"aaaaaaa" withId:@"bbbbbbbbbb"];
+	[self.mSysText addAt:@"aaaaaaa" withId:@"bbbbbbbbbb"];
 	self.mSysText.delegate = self;
 	self.mSysText.dataDetectorTypes = UIDataDetectorTypeLink;
 	self.mSysText.editable = false;

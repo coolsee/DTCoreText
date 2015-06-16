@@ -19,6 +19,19 @@
 	_originalSize = CGSizeMake(22, 22);
 	[self setDisplaySize:_originalSize withMaxDisplaySize:_originalSize];
 	
+	
+	NSString *src = [element.attributes objectForKey:@"src"];
+	self.image = [[DTImageTextAttachment sharedImageCache] objectForKey:src];
+	
+	if (!self.image)
+	{
+		self.image = [UIImage imageNamed:src];
+		// cache that for later
+		if (self.image)
+		{
+			[[DTImageTextAttachment sharedImageCache] setObject:self.image forKey:src];
+		}
+	}
 	return self;
 }
 
@@ -30,17 +43,17 @@
 	if (___useiOS6Attributes)
 	{
 		
+		UIFont *font = [attr objectForKey:NSFontAttributeName];
+		CGRect rect = [@"img" boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
+		CGFloat fontd = [font descender];
+//		rect.size.height = rect.size.height + fontd;
+		rect.origin.y = rect.origin.y+fontd;
+		rect.size.width = rect.size.height;
+		
+		
 		NSTextAttachment *attach = [[NSTextAttachment alloc] init];
 		attach.image = self.image;
 		
-		UIFont *font = [attr objectForKey:NSFontAttributeName];
-		CGRect rect = [@"img" boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
-	
-		
-		CGFloat fontd = [font descender];
-		rect.size.height = rect.size.height + fontd;
-//		rect.origin.y = rect.origin.y+fontd;
-		rect.size.width = rect.size.height;
 		attach.bounds = rect;
 		NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment:attach];
 		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
