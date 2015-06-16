@@ -65,7 +65,7 @@
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
 	
 	[self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:string];
-	self.selectedRange = NSMakeRange(self.selectedRange.location + 1, 1);
+	self.selectedRange = NSMakeRange(self.selectedRange.location + 1, 0);
 //	 textView.textStorage.removeAttribute(NSFontAttributeName, range: wholeRange)
 //	[self.textStorage removeAttribute:NSForegroundColorAttributeName range:NSMakeRange(0, self.textStorage.length)];
 //	[self.textStorage addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.textStorage.length)];
