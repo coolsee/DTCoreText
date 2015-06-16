@@ -61,7 +61,9 @@
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
 	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	
+	if (string == nil){
+		return;
+	}
 	NSRange range = NSMakeRange(self.text.length, 0);
 	[self.textStorage replaceCharactersInRange:range withAttributedString:string];
 	self.selectedRange = NSMakeRange(self.text.length, 0);
@@ -79,7 +81,9 @@
 	[options setObject:[NSNumber numberWithBool:self.editable] forKey:DTTextViewEditable];
 	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	
+	if (string == nil){
+		return;
+	}
 	[self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:string];
 	self.selectedRange = NSMakeRange(self.selectedRange.location + 1, 0);
 
@@ -111,7 +115,9 @@
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
 	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	
+	if (string == nil){
+		return;
+	}
 	NSRange range = NSMakeRange(self.text.length, 0);
 	[self.textStorage replaceCharactersInRange:range withAttributedString:string];
 	self.selectedRange = NSMakeRange(self.text.length, 0);
@@ -128,7 +134,9 @@
 	[options setObject:[NSNumber numberWithBool:self.editable] forKey:DTTextViewEditable];
 	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	
+	if (string == nil){
+		return;
+	}
 	[self.textStorage replaceCharactersInRange:self.selectedRange withAttributedString:string];
 	self.selectedRange = NSMakeRange(self.selectedRange.location + 1, 0);
 }
@@ -139,7 +147,7 @@
 
 - (NSArray*)atUserIds
 {
-	NSMutableArray *models = [NSMutableArray array];
+	NSMutableSet *models = [NSMutableSet set];
 	[self.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, self.attributedText.length)
 					 options:0
 				  usingBlock:^(id value, NSRange range, BOOL *stop) {
@@ -150,7 +158,8 @@
 						  }
 					  }
 				  }];
-	return [NSArray arrayWithArray:models];
+	
+	return models.allObjects;
 }
 
 - (void)appendHtmlStr:(NSString*)text
@@ -160,7 +169,9 @@
 	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
 	[options setObject:[NSNumber numberWithDouble:self.font.pointSize]  forKey:DTDefaultFontSize];
 	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	
+	if (string == nil){
+		return;
+	}
 	NSRange range = NSMakeRange(self.text.length, 0);
 	[self.textStorage replaceCharactersInRange:range withAttributedString:string];
 	self.selectedRange = NSMakeRange(self.text.length, 0);
