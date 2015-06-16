@@ -177,6 +177,8 @@
 	_iOS6View.editable = NO;
 	_iOS6View.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
 	_iOS6View.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_iOS6View.delegate = self;
+	_iOS6View.dataDetectorTypes = UIDataDetectorTypeLink;
 	[self.view addSubview:_iOS6View];
 	
 	self.contentViews = @[_charsView, _rangeView, _htmlView, _textView, _iOS6View];
@@ -611,6 +613,24 @@
 	}
 	
 	return nil;
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+	
+	NSLog(@"URL %@", URL);
+	return false;
+}
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+{
+	NSLog(@"textAttachment %@", textAttachment);
+	return false;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	NSLog(@"textAttachment %@", textView);
 }
 
 - (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame

@@ -9,7 +9,7 @@
 #import "DemoAboutViewController.h"
 
 @interface DemoAboutViewController ()
-@property (weak, nonatomic) IBOutlet DTTextView *mSysText;
+@property (weak, nonatomic) IBOutlet UITextView *mSysText;
 
 @end
 
@@ -27,49 +27,65 @@
 }
 - (IBAction)onGetSysText:(id)sender {
 	
-	NSString *str = self.mSysText.htmlStr;
+	NSString *str = self.mSysText.getHtmlStr;
 	
 	NSLog(@" fragment:%@", str);
 	
-	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
-	[options setObject:[NSNumber numberWithInt:15]  forKey:DTDefaultFontSize];
-	
-	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	self.mSysText.attributedText = string;
+//	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+//	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
+//	[options setObject:[NSNumber numberWithInt:15]  forKey:DTDefaultFontSize];
+//	
+//	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+//	self.mSysText.attributedText = string;
 	
 }
 - (IBAction)addAT:(id)sender {
-	[self.mSysText addAction:@"at" withName:@"水电费" withId:@"id"];
+//	[self.mSysText addAction:@"at" withName:@"水电费" withId:@"id"];
 }
 - (IBAction)onReplaceAt:(id)sender {
     
-    [self.mSysText replaceWithAction:@"at" withName:@"水电费" withId:@"id"];
+//    [self.mSysText replaceWithAction:@"at" withName:@"水电费" withId:@"id"];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+	
+	NSLog(@"URL %@", URL);
+	return false;
+}
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+{
+	NSLog(@"textAttachment %@", textAttachment);
+	return false;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	NSLog(@"textAttachment %@", textView);
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"About" ofType:@"html"];
-	NSData *data = [NSData dataWithContentsOfFile:path];
-	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTMLData:data documentAttributes:NULL];
+	NSString *htmlstr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+	[self.mSysText setHtmlStr:htmlstr];
 	
-	// we draw images and links via subviews provided by delegate methods
-	self.attributedTextView.shouldDrawImages = YES;
-	self.attributedTextView.shouldDrawLinks = YES;
-	self.attributedTextView.textDelegate = self; // delegate for custom sub views
+	[self.mSysText addEmotion:@"Oliver.jpg"];
+//	[self.mSysText addAction:@"at" withName:@"aaaaaaa" withId:@"bbbbbbbbbb"];
+	self.mSysText.delegate = self;
+	self.mSysText.dataDetectorTypes = UIDataDetectorTypeLink;
+	self.mSysText.editable = false;
+	self.mSysText.selectable = false;
+	self.mSysText.scrollEnabled = false;
 
-//	self.attributedTextView.attributedString = attributedString;
-
-	NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], DTUseiOS6Attributes, nil];
-	[options setObject:[NSNumber numberWithInt:15]  forKey:DTDefaultFontSize];
-	NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
-	self.mSysText.attributedText = string;
-	
-
-	NSLog(@" fragment:%@", attributedString.htmlSimpleFragment);
+//	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"www.google.com"];
+//	NSDictionary *linkDic = @{ NSLinkAttributeName : [NSURL URLWithString:@"http://www.google.com"] };
+//	[str setAttributes:linkDic range:[[str string] rangeOfString:@"www.google.com"]];
+//	self.mSysText.attributedText = str;
+//	
+//	NSLog(@" fragment:%@", attributedString.htmlSimpleFragment);
 }
 
 - (void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView didDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context

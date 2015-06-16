@@ -49,7 +49,7 @@
 
 	if (___useiOS6Attributes)
 	{
-//		NSString *value =[NSString stringWithFormat:@"%@", _actName];
+//		NSString *value =[NSString stringWithFormat:@"@%@", _actName];
 //		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value attributes:attr];
 //		
 ////		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:value];
@@ -57,11 +57,11 @@
 //		
 //		[attributedString addAttribute:NSLinkAttributeName
 //								 value:url
-//								 range:NSMakeRange(0, attributedString.length)];
+//								 range:NSMakeRange(0, value.length)];
 //		
 //		[attributedString addAttribute:NSForegroundColorAttributeName
 //								 value:[UIColor blueColor]
-//								 range:NSMakeRange(0, attributedString.length)];
+//								 range:NSMakeRange(0, value.length)];
 //		return attributedString;
 		
 		NSString *text =[NSString stringWithFormat:@"@%@", _actName];
@@ -74,8 +74,10 @@
 		UIImage *image = [[UIImage alloc] init];
 		UIGraphicsBeginImageContext(rect.size);
 		[image drawInRect:rect];
-		[[UIColor blueColor] set];
-		[text drawInRect:CGRectIntegral(rect) withFont:font];
+//		[[UIColor blueColor] set];
+		NSDictionary *attribute = @{NSForegroundColorAttributeName: [UIColor blueColor]};
+		[text drawInRect:rect withAttributes:attribute];
+//		[text drawInRect:CGRectIntegral(rect) withFont:font];
 		UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 		
@@ -84,8 +86,11 @@
 		rect.origin.y = rect.origin.y+fontd;
 		attach.bounds = rect;
 		NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment:attach];
-		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
 		
+		NSMutableAttributedString *attrRet = attributedString.mutableCopy;
+		[attrRet addAttribute:NSLinkAttributeName
+								 value:[NSURL URLWithString:_actId]
+								 range:NSMakeRange(0, attrRet.length)];
 		[attrRet addAttributes:attr range:NSMakeRange(0, attrRet.length)];
 		
 		return attrRet;

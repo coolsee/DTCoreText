@@ -78,5 +78,7 @@
 
 #import "UIFont+DTCoreText.h"
 
+#import "DTTextView.h"
+
 #endif
 
